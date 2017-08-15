@@ -1,0 +1,36 @@
+<html>
+<head>
+<title> leado </title>
+</head>
+<body>
+<h1><center>FoodNinja<center></h1><br><br><br>
+<form onsubmit = "return convertToJSON(this);">
+  Name: <input type="text" name="name" value=" ">
+  <br><br>
+  Contact: <input type="text" name="contact" value=" ">
+  <br><br>
+  Alternate Mobile: <input type="text" name="mobile" value=" ">
+  <br><br>
+  Cart items:<input type="text" name="items" value=" ">
+  <br><br>
+  Cart total: <input type="text" name="total" value=" ">
+  <br><br><br>
+  <input type="submit">
+</form> <br><br>
+<pre id="output">THIS IS JSON....</pre>
+<script>
+	function convertToJSON(form) {
+		var json = {
+			"name":form.name.value,
+			"contact":form.contact.value,
+			"alternate_contact":form.mobile.value,
+			"cart_items":form.items.value,
+			"cart_total":form.total.value
+		};
+		var details = JSON.stringify(json);
+		document.getElementById('output').innerHTML = details;
+			return false;
+	}
+</script>
+</body>
+</html>
