@@ -1,10 +1,11 @@
 package Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by Rajat Gupta on 15-Aug-17.
  */
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Input {
 
     private String name;
