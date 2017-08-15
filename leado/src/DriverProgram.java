@@ -1,8 +1,8 @@
 import Component.Input;
 import Filters.Filter;
 import Filters.FilterFactory;
+import SMSApi.SMSJson;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -20,7 +20,9 @@ public class DriverProgram  {
     public static void main(String[] args) throws IOException {
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         boolean invalidRecommendation = false;
-       Input input_recommendation;
+        Input input_recommendation;
+
+
        ObjectMapper mapper  = new ObjectMapper();
        input_recommendation = mapper.readValue(inputJson, Input.class);
        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -33,7 +35,7 @@ public class DriverProgram  {
 
            //int n = reader.nextInt();
            String user_filter = reader.next();
-           if(user_filter == null){
+           if(user_filter.equalsIgnoreCase("none")){
                break;
            }
            else {
@@ -47,7 +49,10 @@ public class DriverProgram  {
        }
        if(invalidRecommendation == false){
            //hit SMS Api's
+           SMSJson smsJson = new SMSJson();
+           if(smsJson.isSMSsend(input_recommendation)) {
+               numberOfMsgsSent +=1;
+           }
        }
-
     }
 }
